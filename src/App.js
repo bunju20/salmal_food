@@ -16,7 +16,13 @@ function App() {
           <img src={ImageSVG} alt="Main Image" />
         </section>
         <section className="text-section">
-          <p>Your text here</p>
+        <span class="timing-text">지금이 타이밍!</span> <span class="best-price-text">역대 최저가</span>
+        
+        <div className="timers">
+        <div className="timer-box">
+      <p className="timer-number">23 : 58 : 31</p>
+    </div>
+    </div>
           <div className="box-container">
             <TopTwoBox />
             <TopTwoBox />
