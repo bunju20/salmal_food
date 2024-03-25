@@ -1,5 +1,6 @@
 body {
   background-color: #f0f0f0; /* 페이지의 나머지 배경색 */
+  font-family: AppleSDGothicNeoB;
 }
 
 .App-header {
@@ -144,3 +145,16 @@ body {
   justify-content: center;
   gap: 10px;
 }
+
+.p-10px {
+  padding: 10px;
+}
+
+.btn-height {
+  height: 28px;
+  padding-top:5px;
+  padding-bottom:5px;
+  padding-left: 13px;
+  padding-right: 13px;
+}
+
