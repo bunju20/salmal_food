@@ -2,7 +2,13 @@
     display: flex;
     max-width: 153px;
     flex-direction: column;
-    padding: 0 20px;
+    margin-left: 10px;
+
+    /*
+    왼쪽 정렬
+    */
+    text-align: left;
+    align-items: flex-start;
   }
   
   .Div2-h {
@@ -59,10 +65,12 @@
     color: #b5b5b5;
     text-decoration-line: line-through; /* Adjusted property name */
     flex-grow: 1;
+    text-align: left;
+
   }
   
   .Div6-h {
-    color: #ff40b4;
+    color: #FF77CA;
     flex-grow: 1;
     flex-basis: auto;
   }
@@ -95,3 +103,9 @@
     height: 4px;
   }
   
+  .carousel-container {
+    max-width: 390px; /* 혹은 원하는 최대 너비 */
+    overflow: hidden; /* 컨텐츠가 컨테이너 너비를 초과하는 경우 숨깁니다 */
+    /*한페이지에 3개*/
+    display: flex;
+  }

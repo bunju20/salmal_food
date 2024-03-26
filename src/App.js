@@ -7,7 +7,7 @@ import Tag from './component/Tag.js';
 import CateBox from './component/CateBox.js';
 import HotDeal from './component/HotDeal.js';
 import BottomBanner from '../src/asset/bottom_banner.svg';
-
+import HotDealCarousel from './component/HotDealCarousel.js';
 
 function App() {
   return (
@@ -52,10 +52,12 @@ function App() {
           </div>
         </section>
         <section className="text-section">
-        <span class="cate-text-black">쟁여두기 좋은</span> <span class="cate-text">살림필수템 핫딜</span>
-        <HotDeal></HotDeal>
+        <div className='hot-text'>
+        <span className="cate-text-black">쟁여두기 좋은</span> <span className="cate-text">살림필수템 핫딜</span>
+        </div>
+        <HotDealCarousel/>
         </section>
-      
+    
         <img src={BottomBanner} alt="banner" />
     </div>
     
