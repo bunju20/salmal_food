@@ -14,7 +14,7 @@ body {
   display: flex;
   justify-content: center; /* 내용을 중앙에 정렬 */
   width: 100%; /* 전체 너비를 사용 */
-  margin-bottom : 48px;
+  margin-bottom : 40px;
 }
 
 .App-header img, .image-section img {
@@ -210,6 +210,8 @@ body {
   display: flex;
   gap: 5px; /* 태그 사이의 간격 조정 */
   justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 14px;
 }
 
 

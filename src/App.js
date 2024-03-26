@@ -56,14 +56,48 @@ function App() {
                     <Tag>간편조리 즉석식품 </Tag>
                 </div>
                 <div className="box-row">
-                    <CateBox></CateBox>
-                    <CateBox></CateBox>
-                    <CateBox></CateBox>
+                    <CateBox
+                        price="20,780"
+                        discountRate="29"
+                        productName="곰곰 시나노골드 사…"
+                        originalPrice="29,430"
+                    />
+
+                    <CateBox
+                        price="20,780"
+                        discountRate="29"
+                        productName="곰곰 시나노골드 사…"
+                        originalPrice="29,430"
+                    />
+
+                    <CateBox
+                        price="20,780"
+                        discountRate="29"
+                        productName="곰곰 시나노골드 사…"
+                        originalPrice="29,430"
+                    />
                 </div>
                 <div className="box-row">
-                    <CateBox></CateBox>
-                    <CateBox></CateBox>
-                    <CateBox></CateBox>
+                    <CateBox
+                        price="20,780"
+                        discountRate="29"
+                        productName="곰곰 시나노골드 사…"
+                        originalPrice="29,430"
+                    />
+
+                    <CateBox
+                        price="20,780"
+                        discountRate="29"
+                        productName="곰곰 시나노골드 사…"
+                        originalPrice="29,430"
+                    />
+
+                    <CateBox
+                        price="20,780"
+                        discountRate="29"
+                        productName="곰곰 시나노골드 사…"
+                        originalPrice="29,430"
+                    />
                 </div>
             </section>
             <section className="text-section">
