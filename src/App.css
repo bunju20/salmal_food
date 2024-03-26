@@ -1,6 +1,5 @@
 body {
   background-color: #f0f0f0; /* 페이지의 나머지 배경색 */
-  font-family: AppleSDGothicNeoB;
 }
 
 .App-header {
@@ -58,6 +57,7 @@ body {
   width: 100%; /* 부모 컨테이너의 너비를 따름 */
   padding: 15px; /* 내부 여유 공간을 생성, 필요에 따라 조정 */
   box-sizing: border-box; /* 패딩이 너비에 포함되도록 설정 */
+  font-family: AppleSDGothicNeoB;
 }
 
 .box, .scrolling-box {
@@ -156,5 +156,58 @@ body {
   padding-bottom:5px;
   padding-left: 13px;
   padding-right: 13px;
+}
+
+
+.gray-section {
+  background-color: #F5F5F5;
+  /*부모의 padding을 무시함*/
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+}
+
+.cate-text {
+  font-family: AppleSDGothicNeoEB;
+  font-size: 20px;
+  color: #FF40B4; 
+}
+
+.cate-text-black{
+  font-family: AppleSDGothicNeoEB;
+  font-size: 20px;
+  color: #1C1C1C; 
+}
+
+.input-box {
+  width: 120px;
+  height: 30px;
+  border: 2px solid #FF40B4;
+  border-radius: 80px;
+  background-color: #FFFFFF;
+  color: #FF40B4;
+  padding: 3px 5px 5px 5px;
+  outline: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  user-select: none; /* 텍스트 선택 방지 */
+  font-size: 14px;
+  font-family: AppleSDGothicNeoB;
+
+}
+.input-box.active {
+  width: 120px;
+  height: 30px;
+  background-color: #FF40B4;
+  color: #FFFFFF;
+  border-color: #FF40B4;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* 태그 사이의 간격 조정 */
+  justify-content: flex-start;
 }
 
