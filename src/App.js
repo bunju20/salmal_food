@@ -9,6 +9,7 @@ import BottomBanner from "../src/asset/bottom_banner.svg";
 import HotDealCarousel from "./component/HotDealCarousel.js";
 import Products from "./service/apiService.js";
 import TopTwoService from "./service/TopTwoService.js";
+import CateService from "./service/CateService.js";
 
 function App() {
     const API_URL = process.env.REACT_APP_HOSITAMTAM;
@@ -34,59 +35,7 @@ function App() {
                     </div>
                 </section>
             </div>
-            <section className="gray-section">
-                <span class="cate-text">카테고리 특가</span>{" "}
-                <span class="cate-text-black">로 현명한 소비</span>
-                <div className="tags-container">
-                    <Tag>당일배송 신선식품</Tag>
-                    <Tag>매일 건강 한 조각</Tag>
-                    <Tag>간편조리 즉석식품 </Tag>
-                </div>
-                <div className="box-row">
-                    <CateBox
-                        price="20,780"
-                        discountRate="29"
-                        productName="곰곰 시나노골드 사…"
-                        originalPrice="29,430"
-                    />
-
-                    <CateBox
-                        price="20,780"
-                        discountRate="29"
-                        productName="곰곰 시나노골드 사…"
-                        originalPrice="29,430"
-                    />
-
-                    <CateBox
-                        price="20,780"
-                        discountRate="29"
-                        productName="곰곰 시나노골드 사…"
-                        originalPrice="29,430"
-                    />
-                </div>
-                <div className="box-row">
-                    <CateBox
-                        price="20,780"
-                        discountRate="29"
-                        productName="곰곰 시나노골드 사…"
-                        originalPrice="29,430"
-                    />
-
-                    <CateBox
-                        price="20,780"
-                        discountRate="29"
-                        productName="곰곰 시나노골드 사…"
-                        originalPrice="29,430"
-                    />
-
-                    <CateBox
-                        price="20,780"
-                        discountRate="29"
-                        productName="곰곰 시나노골드 사…"
-                        originalPrice="29,430"
-                    />
-                </div>
-            </section>
+            <CateService />
 
             <section className="text-section">
                 <div className="hot-text">

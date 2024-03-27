@@ -1,16 +1,17 @@
 import React from "react";
 import "../css/cateBox.css"; // Make sure to import the CSS file here
 
-function CateBox({ price, discountRate, productName, originalPrice }) {
+function CateBox({
+    price,
+    discountRate,
+    productName,
+    originalPrice,
+    imageUrl,
+}) {
     return (
         <div className="Div">
             <div className="Div2">
-                <img
-                    className="Img"
-                    loading="lazy"
-                    srcSet="https://thumbnail9.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/a44a/de5d02b54747c05109bd35d167893ac9af2253346d69212b92a33c636dd3.jpg"
-                    alt=""
-                />
+                <img className="Img" loading="lazy" srcSet={imageUrl} alt="" />
                 <div className="Div3">로켓프레시</div>
             </div>
             <div className="Div4">

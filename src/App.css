@@ -169,6 +169,13 @@ body {
 
 }
 
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+
 .cate-text {
   font-family: AppleSDGothicNeoEB;
   font-size: 24px;
