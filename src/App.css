@@ -171,13 +171,13 @@ body {
 
 .cate-text {
   font-family: AppleSDGothicNeoEB;
-  font-size: 20px;
+  font-size: 24px;
   color: #FF77CA; 
 }
 
 .cate-text-black{
   font-family: AppleSDGothicNeoEB;
-  font-size: 20px;
+  font-size: 24px;
   color: #1C1C1C; 
 }
 
@@ -219,4 +219,11 @@ body {
   font-family: AppleSDGothicNeoEB;
   font-size: 24px;
   margin-bottom: 20px; 
+}
+
+.top-two-products-container {
+  display: flex;
+  flex-direction: row; /* 항목들을 가로로 정렬 */
+  justify-content: center; /* 중앙 정렬 */
+  gap: 20px; /* 항목 사이의 간격 */
 }

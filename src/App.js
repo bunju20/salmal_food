@@ -2,14 +2,16 @@ import "./App.css";
 import LogoSVG from "../src/asset/logo.svg";
 import ImageSVG from "../src/asset/header.svg";
 import "./component/TopTwoBox.js";
-import TopTwoBox from "./component/TopTwoBox.js";
 import Tag from "./component/Tag.js";
 import CateBox from "./component/CateBox.js";
 import HotDeal from "./component/HotDeal.js";
 import BottomBanner from "../src/asset/bottom_banner.svg";
 import HotDealCarousel from "./component/HotDealCarousel.js";
+import Products from "./service/apiService.js";
+import TopTwoService from "./service/TopTwoService.js";
 
 function App() {
+    const API_URL = process.env.REACT_APP_HOSITAMTAM;
     return (
         <div className="responsive-square">
             <div className="App">
@@ -28,22 +30,7 @@ function App() {
                         </div>
                     </div>
                     <div className="box-container">
-                        <TopTwoBox
-                            productName="페레로로쉐 T8 사각 초콜릿"
-                            originalPrice="12,391"
-                            discountRate="21"
-                            discountedPrice="9,880"
-                            imageUrl="https://thumbnail9.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/a44a/de5d02b54747c05109bd35d167893ac9af2253346d69212b92a33c636dd3.jpg"
-                            savings="2,511"
-                        />
-                        <TopTwoBox
-                            productName="페레로로쉐 T8 사각 초콜릿"
-                            originalPrice="12,391"
-                            discountRate="21"
-                            discountedPrice="9,880"
-                            imageUrl="https://thumbnail9.coupangcdn.com/thumbnails/remote/230x230ex/image/vendor_inventory/a44a/de5d02b54747c05109bd35d167893ac9af2253346d69212b92a33c636dd3.jpg"
-                            savings="2,511"
-                        />
+                        <TopTwoService />
                     </div>
                 </section>
             </div>
@@ -100,6 +87,7 @@ function App() {
                     />
                 </div>
             </section>
+
             <section className="text-section">
                 <div className="hot-text">
                     <span className="cate-text-black">쟁여두기 좋은</span>{" "}
