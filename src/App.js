@@ -37,6 +37,39 @@ function App() {
         return localISOTime;
     }
 
+    useEffect(() => {
+        // 컴포넌트가 마운트될 때의 시간을 기록합니다.
+        const startTime = new Date();
+
+        // 클린업 함수에서 페이지를 벗어날 때의 로직을 처리합니다.
+        return () => {
+            const endTime = new Date(); // 현재 시간을 기록합니다.
+            const timeSpent = (endTime - startTime) / 1000; // 초 단위로 계산합니다.
+            console.log(`User spent ${timeSpent} seconds on the page.`);
+
+            // 여기서 timeSpent 값을 백엔드로 보내거나 다른 처리를 할 수 있습니다.
+        };
+    }, []);
+
+    useEffect(() => {
+        // URL에서 쿼리 파라미터를 추출합니다.
+        const queryParams = new URLSearchParams(window.location.search);
+        // utm_source 파라미터를 통해 방문 출처를 식별합니다.
+        const source = queryParams.get("utm_source");
+
+        // 출처에 따라 적절한 로그를 출력하거나 다른 작업을 수행합니다.
+        if (source === "instagram" || source === "insta") {
+            console.log("User came from Instagram.");
+            // 인스타그램에서 온 경우 처리
+        } else if (source === "facebook") {
+            console.log("User came from Facebook.");
+            // 페이스북에서 온 경우 처리
+        } else {
+            console.log("User came from an unknown source.");
+            // 알 수 없는 출처에서 온 경우 처리
+        }
+    }, []);
+
     return (
         <div className="responsive-square">
             <div className="App">
