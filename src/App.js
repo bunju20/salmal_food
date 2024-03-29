@@ -70,6 +70,23 @@ function App() {
         }
     }, []);
 
+    useEffect(() => {
+        // 사용자 에이전트 문자열을 가져옵니다.
+        const userAgent = navigator.userAgent;
+
+        // 간단한 정규식을 사용하여 모바일 기기 접속 여부를 확인합니다.
+        const isMobile =
+            /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+                userAgent
+            );
+
+        if (isMobile) {
+            console.log("User is on a mobile device.");
+        } else {
+            console.log("User is on a desktop device.");
+        }
+    }, []);
+
     return (
         <div className="responsive-square">
             <div className="App">
