@@ -7,9 +7,20 @@ function CateBox({
     productName,
     originalPrice,
     imageUrl,
+    categoryName,
+    componentIndex,
 }) {
+    const handleClick = () => {
+        //console.log("버튼이 클릭되었습니다.");
+        console.log(`버튼이 클릭되었습니다. 컴포넌트 식별자: ${categoryName}`);
+        console.log(
+            `버튼이 클릭되었습니다. 컴포넌트 인덱스: ${componentIndex}`
+        );
+        // 여기에 원하는 동작 추가
+    };
+
     return (
-        <div className="Div">
+        <button onClick={handleClick} className="Div">
             <div className="Div2">
                 <img className="Img" loading="lazy" srcSet={imageUrl} alt="" />
                 <div className="Div3">로켓프레시</div>
@@ -30,7 +41,7 @@ function CateBox({
                 <div className="Div7">{discountRate}%</div>
             </div>
             <div className="Div8">{productName}</div>
-        </div>
+        </button>
     );
 }
 

@@ -63,24 +63,9 @@ function CateService() {
                         discountRate={product.discount_rate.toString()}
                         price={product.discount_price.toString()}
                         imageUrl={product.thumbnail}
+                        categoryName={selectedTag}
+                        componentIndex={index + 1}
                     />
-
-                    /*price, discountRate, productName, originalPrice  
-                    
-                    <TopTwoBox
-                    key={index}
-                    productName={product.name}
-                    originalPrice={product.price.toString()}
-                    discountRate={product.discount_rate.toString()} // 수정됨
-                    discountedPrice={product.discount_price.toString()}
-                    imageUrl={product.thumbnail} // 수정됨
-                    savings={(
-                        parseInt(product.price) -
-                        parseInt(product.discount_price)
-                    ).toString()}
-                />
-                    
-                    */
                 ))}
             </div>
         </section>
