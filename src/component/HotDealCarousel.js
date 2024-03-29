@@ -61,11 +61,11 @@ function HotDealCarousel() {
             {deals.map((deal, index) => (
                 <HotDeal
                     key={index}
-                    dealTitle={deal.name         }
+                    dealTitle={deal.name}
                     originalPrice={deal.originalPrice}
                     discountRate={deal.discountRate}
                     discountedPrice={deal.discountedPrice}
-                    imageUrl={deal.imageUrl}
+                    imageUrl={deal.thumbnail}
                 />
 
                 /*
