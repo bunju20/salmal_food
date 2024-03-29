@@ -66,24 +66,8 @@ function HotDealCarousel() {
                     discountRate={deal.discountRate}
                     discountedPrice={deal.discountedPrice}
                     imageUrl={deal.thumbnail}
+                    componentIndex={index + 1}
                 />
-
-                /*
-                    dealTitle,
-    originalPrice,
-    discountRate,
-    discountedPrice,
-    imageUrl,
-
-                       <CateBox
-                        key={index}
-                        productName={product.name}
-                        originalPrice={product.price.toString()}
-                        discountRate={product.discount_rate.toString()}
-                        price={product.discount_price.toString()}
-                        imageUrl={product.thumbnail}
-                    />
-                */
             ))}
         </Carousel>
     );

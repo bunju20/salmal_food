@@ -7,9 +7,16 @@ function HotDeal({
     discountRate,
     discountedPrice,
     imageUrl,
+    componentIndex,
 }) {
+    const handleClick = () => {
+        //console.log("버튼이 클릭되었습니다.");
+        console.log(
+            `버튼이 클릭되었습니다. 컴포넌트 식별자: ${componentIndex}`
+        );
+    };
     return (
-        <div className="Div-h">
+        <button onClick={handleClick} className="Div-h">
             <div className="Div2-h">
                 <img className="Img-h" loading="lazy" src={imageUrl} alt="" />
             </div>
@@ -26,7 +33,7 @@ function HotDeal({
                 {/* 이미지 경로가 고정되어 있으므로, 필요에 따라 props에서 받아오는 방식으로 변경할 수 있습니다. */}
                 <img src={require("../asset/rocket.svg").default} />
             </div>
-        </div>
+        </button>
     );
 }
 
