@@ -1,6 +1,7 @@
 import React from "react";
 
 function TopTwoBox({
+    index, // 추가된 prop: 컴포넌트의 인덱스 또는 고유 식별자
     productName,
     originalPrice,
     discountRate,
@@ -8,6 +9,12 @@ function TopTwoBox({
     imageUrl,
     savings,
 }) {
+    // 클릭 이벤트 핸들러가 컴포넌트의 식별 정보를 로깅하도록 수정
+    const handleClick = () => {
+        console.log(`버튼이 클릭되었습니다. 컴포넌트 식별자: ${index}`);
+        // 여기에 원하는 동작 추가
+    };
+
     return (
         <div className="flex flex-col items-start my-3.5 ml-3 p-10px bg-white rounded-xl border border-solid border-zinc-300 leading-[150%] max-w-[172px]">
             <div className="text-sm leading-4 text-neutral-700">
@@ -32,9 +39,12 @@ function TopTwoBox({
                 srcSet={imageUrl}
                 className="self-center ml-4 aspect-[1.41] max-w-[119px] w-[119px]"
             />
-            <div className="justify-center text-xs text-center text-pink-400 rounded-md bg-pink-400 bg-opacity-20 btn-height">
+            <button
+                onClick={handleClick}
+                className="justify-center text-xs text-center text-pink-400 rounded-md bg-pink-400 bg-opacity-20 btn-height"
+            >
                 지금 사고 {savings}원 아끼기
-            </div>
+            </button>
         </div>
     );
 }

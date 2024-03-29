@@ -26,6 +26,7 @@ function TopTwoService() {
             {products.map((product, index) => (
                 <TopTwoBox
                     key={index}
+                    index={index}
                     productName={product.name}
                     originalPrice={product.price.toString()}
                     discountRate={product.discount_rate.toString()} // 수정됨
