@@ -10,20 +10,16 @@ import HotDealCarousel from "./component/HotDealCarousel.js";
 import Products from "./service/apiService.js";
 import TopTwoService from "./service/TopTwoService.js";
 import CateService from "./service/CateService.js";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUid } from "./google/dataSlice.js";
 import { v4 as uuidv4 } from "uuid";
 
 function App() {
-    const dispatch = useDispatch(); // dispatch 함수를 사용하기 위한 훅
-
-    const uniqueID = uuidv4(); // 고유한 ID를 생성합니다.
-    console.log("Generated unique ID:", uniqueID);
-    dispatch(setUid(uniqueID)); // 생성된 고유 ID를 리덕스 스토어에 저장합니다.
-
-    const formattedDateTime = getLocalDateTime();
-    console.log("Current Local Date and Time:", formattedDateTime);
+    const [currentSection, setCurrentSection] = useState("");
+    const dispatch = useDispatch();
+    const logoRef = useRef(null); // 로고 섹션을 위한 ref
+    const categoryRef = useRef(null); // 카테고리 섹션을 위한 ref // dispatch 함수를 사용하기 위한 훅
 
     const API_URL = process.env.REACT_APP_HOSITAMTAM;
 
@@ -37,22 +33,33 @@ function App() {
         return localISOTime;
     }
 
+    const handleScroll = () => {
+        const scrollPosition = window.scrollY;
+        const logoPosition = logoRef.current?.offsetTop || 0; // 로고 섹션의 위치
+        const categoryPosition = categoryRef.current?.offsetTop || 0; // 카테고리 섹션의 위치
+
+        // 스크롤 위치에 따라 현재 섹션을 결정합니다.
+        if (
+            scrollPosition >= logoPosition &&
+            scrollPosition < categoryPosition
+        ) {
+            setCurrentSection("Logo");
+        } else if (scrollPosition >= categoryPosition) {
+            setCurrentSection("Category");
+        }
+    };
+
     useEffect(() => {
         // 컴포넌트가 마운트될 때의 시간을 기록합니다.
         const startTime = new Date();
 
-        // 클린업 함수에서 페이지를 벗어날 때의 로직을 처리합니다.
-        return () => {
-            const endTime = new Date(); // 현재 시간을 기록합니다.
-            const timeSpent = (endTime - startTime) / 1000; // 초 단위로 계산합니다.
-            console.log(`User spent ${timeSpent} seconds on the page.`);
+        const uniqueID = uuidv4(); // 고유한 ID를 생성합니다.
+        console.log("Generated unique ID:", uniqueID);
+        dispatch(setUid(uniqueID)); // 생성된 고유 ID를 리덕스 스토어에 저장합니다.
 
-            // 여기서 timeSpent 값을 백엔드로 보내거나 다른 처리를 할 수 있습니다.
-        };
-    }, []);
+        const formattedDateTime = getLocalDateTime();
+        console.log("Current Local Date and Time:", formattedDateTime);
 
-    useEffect(() => {
-        // URL에서 쿼리 파라미터를 추출합니다.
         const queryParams = new URLSearchParams(window.location.search);
         // utm_source 파라미터를 통해 방문 출처를 식별합니다.
         const source = queryParams.get("utm_source");
@@ -68,10 +75,7 @@ function App() {
             console.log("User came from an unknown source.");
             // 알 수 없는 출처에서 온 경우 처리
         }
-    }, []);
 
-    useEffect(() => {
-        // 사용자 에이전트 문자열을 가져옵니다.
         const userAgent = navigator.userAgent;
 
         // 간단한 정규식을 사용하여 모바일 기기 접속 여부를 확인합니다.
@@ -85,18 +89,35 @@ function App() {
         } else {
             console.log("User is on a desktop device.");
         }
+
+        // 클린업 함수에서 페이지를 벗어날 때의 로직을 처리합니다.
+        return () => {
+            const endTime = new Date(); // 현재 시간을 기록합니다.
+            const timeSpent = (endTime - startTime) / 1000; // 초 단위로 계산합니다.
+            console.log(`User spent ${timeSpent} seconds on the page.`);
+
+            // 여기서 timeSpent 값을 백엔드로 보내거나 다른 처리를 할 수 있습니다.
+        };
+    }, []);
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        console.log("Current Section:", currentSection);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
     }, []);
 
     return (
         <div className="responsive-square">
             <div className="App">
-                <header className="App-header">
+                <header ref={logoRef} className="App-header">
                     <img src={LogoSVG} alt="Logo" />
                 </header>
                 <section className="image-section">
                     <img src={ImageSVG} alt="Main Image" />
                 </section>
-                <section className="text-section">
+                <section ref={categoryRef} className="text-section">
                     <span class="timing-text">지금이 타이밍!</span>{" "}
                     <span class="best-price-text">역대 최저가</span>
                     <div className="timers">
