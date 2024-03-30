@@ -16,6 +16,7 @@ import { setUid, setDate, setReferrer, setDevice } from "./google/dataSlice.js";
 import { v4 as uuidv4 } from "uuid";
 import { sendDataToSpreadsheet } from "./google/sendData.jsx";
 import { useSelector } from "react-redux";
+import CountdownTimer from "./component/CountdownTimer.js";
 
 function App() {
     const [currentSection, setCurrentSection] = useState("");
@@ -75,6 +76,7 @@ function App() {
         // 출처에 따라 적절한 로그를 출력하거나 다른 작업을 수행합니다.
         if (source === "instagram" || source === "insta") {
             console.log("User came from Instagram.");
+            dispatch(setReferrer("Instagram"));
             // 인스타그램에서 온 경우 처리
         } else if (source === "facebook") {
             console.log("User came from Facebook.");
@@ -133,10 +135,8 @@ function App() {
                 <section ref={categoryRef} className="text-section">
                     <span class="timing-text">지금이 타이밍!</span>{" "}
                     <span class="best-price-text">역대 최저가</span>
-                    <div className="timers">
-                        <div className="timer-box">
-                            <p className="timer-number">23 : 58 : 31</p>
-                        </div>
+                    <div className="box-container">
+                        <CountdownTimer />
                     </div>
                     <div className="box-container">
                         <TopTwoService />

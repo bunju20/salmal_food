@@ -4,7 +4,7 @@ import "../App.css"; // 경로 확인 필요
 
 function TopTwoService() {
     const [products, setProducts] = useState([]);
-    const API_URL = process.env.REACT_APP_HOSITAMTAM;
+    const API_URL = process.env.REACT_APP_TOPTWO;
     const numberOfProducts = 2; // 원하는 제품 개수
 
     useEffect(() => {
@@ -28,14 +28,11 @@ function TopTwoService() {
                     key={index}
                     index={index}
                     productName={product.name}
-                    originalPrice={product.price.toString()}
+                    originalPrice={product.highest_regular_price.toString()}
                     discountRate={product.discount_rate.toString()} // 수정됨
-                    discountedPrice={product.discount_price.toString()}
+                    discountedPrice={product.price.toString()}
                     imageUrl={product.thumbnail} // 수정됨
-                    savings={(
-                        parseInt(product.price) -
-                        parseInt(product.discount_price)
-                    ).toString()}
+                    savings={product.discount_price.toString()}
                 />
             ))}
         </div>

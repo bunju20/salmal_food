@@ -59,13 +59,24 @@ function CateService() {
                     <CateBox
                         key={index}
                         productName={product.name}
-                        originalPrice={product.price.toString()}
+                        originalPrice={product.highest_regular_price.toString()}
                         discountRate={product.discount_rate.toString()}
-                        price={product.discount_price.toString()}
+                        price={product.price.toString()}
                         imageUrl={product.thumbnail}
                         categoryName={selectedTag}
                         componentIndex={index + 1}
                     />
+                    /*
+                                        key={index}
+                    index={index}
+                    productName={product.name}
+                    originalPrice={product.highest_regular_price.toString()}
+                    discountRate={product.discount_rate.toString()} // 수정됨
+                    discountedPrice={product.price.toString()}
+                    imageUrl={product.thumbnail} // 수정됨
+                    savings={product.discount_price.toString()}
+                />
+                    */
                 ))}
             </div>
         </section>

@@ -62,9 +62,9 @@ function HotDealCarousel() {
                 <HotDeal
                     key={index}
                     dealTitle={deal.name}
-                    originalPrice={deal.originalPrice}
-                    discountRate={deal.discountRate}
-                    discountedPrice={deal.discountedPrice}
+                    originalPrice={deal.highest_regular_price}
+                    discountRate={deal.discount_rate}
+                    discountedPrice={deal.price}
                     imageUrl={deal.thumbnail}
                     componentIndex={index + 1}
                 />
