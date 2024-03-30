@@ -62,11 +62,6 @@ function App() {
     };
 
     useEffect(() => {
-        console.log(JSON.stringify(data)); // 상태가 업데이트된 후에 실행될 로직
-        sendDataToSpreadsheet(data);
-    }, [data]);
-
-    useEffect(() => {
         // 로컬 스토리지에서 상태 불러오기
         const savedData = localStorage.getItem("appState");
         const currentTime = Date.now();
@@ -105,19 +100,18 @@ function App() {
 
         // 유저 ID가 있고, 저장된 시간으로부터 10분이 지나지 않았다면 기존 UID 유지
         if (storedUID && storedTime && currentTime - storedTime < timeLimit) {
-            console.log("Using stored UID:", storedUID);
             dispatch(setUid(storedUID));
         } else {
             // 그렇지 않다면 새로운 UID 생성 및 저장
             const newUID = uuidv4();
-            console.log("Generated new UID:", newUID);
+
             dispatch(setUid(newUID));
             localStorage.setItem("userID", newUID);
             localStorage.setItem("userTime", currentTime.toString()); // 현재 시간 저장
         }
 
         const formattedDateTime = getLocalDateTime();
-        console.log("Current Local Date and Time:", formattedDateTime);
+
         dispatch(setDate(formattedDateTime));
 
         const queryParams = new URLSearchParams(window.location.search);
@@ -125,19 +119,15 @@ function App() {
         const source = queryParams.get("utm_source");
         // 출처에 따라 적절한 로그를 출력하거나 다른 작업을 수행합니다.
         if (source === "instagram" || source === "insta") {
-            console.log("User came from Instagram.");
             dispatch(setReferrer("Instagram"));
             // 인스타그램에서 온 경우 처리
         } else if (source === "facebook") {
-            console.log("User came from Facebook.");
             dispatch(setReferrer("facebook"));
             // 페이스북에서 온 경우 처리
         } else if (source === "toss") {
-            console.log("User came from Facebook.");
             dispatch(setReferrer("toss"));
             // 페이스북에서 온 경우 처리
         } else {
-            console.log("User came from an unknown source.");
             dispatch(setReferrer("Unknown"));
             // 알 수 없는 출처에서 온 경우 처리
         }
@@ -150,38 +140,28 @@ function App() {
                 userAgent
             );
 
-        if (isMobile) {
-            console.log("User is on a mobile device.");
-        } else {
-            console.log("User is on a desktop device.");
-        }
         dispatch(setDevice(isMobile ? "Mobile" : "Desktop"));
-
-        console.log("Data to be sent:", data);
         sendDataToSpreadsheet(data);
 
-        // 클린업 함수에서 페이지를 벗어날 때의 로직을 처리합니다.
-        return () => {
-            const endTime = Date.now(); // 현재 시간을 기록합니다.
-            const timeSpentInSeconds = Math.round((endTime - startTime) / 1000); // 페이지에 머문 시간을 초 단위로 계산
+        // return () => {
+        //     const endTime = Date.now(); // 현재 시간을 기록합니다.
+        //     const timeSpentInSeconds = Math.round((endTime - startTime) / 1000); // 페이지에 머문 시간을 초 단위로 계산
 
-            // 시간, 분, 초 계산
-            const hours = Math.floor(timeSpentInSeconds / 3600);
-            const minutes = Math.floor((timeSpentInSeconds % 3600) / 60);
-            const seconds = timeSpentInSeconds % 60;
+        //     // 시간, 분, 초 계산
+        //     const hours = Math.floor(timeSpentInSeconds / 3600);
+        //     const minutes = Math.floor((timeSpentInSeconds % 3600) / 60);
+        //     const seconds = timeSpentInSeconds % 60;
 
-            // 시간, 분, 초를 문자열 형식으로 변환 ("몇시간 몇분 몇초")
-            const timeSpentString = `${hours}시간 ${minutes}분 ${seconds}초`;
-
-            console.log(`User spent ${timeSpentString} on the page.`); // 변환된 문자열 로깅
-            dispatch(setTime(timeSpentString));
-            // 여기서 timeSpent 값을 백엔드로 보내거나 다른 처리를 할 수 있습니다.
-        };
+        //     // 시간, 분, 초를 문자열 형식으로 변환 ("몇시간 몇분 몇초")
+        //     const timeSpentString = `${hours}시간 ${minutes}분 ${seconds}초`;
+        //     dispatch(setTime(timeSpentString));
+        //     sendDataToSpreadsheet(data);
+        // };
     }, []);
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
-        console.log("Current Section:", currentSection);
+
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };

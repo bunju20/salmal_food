@@ -14,10 +14,6 @@ function Products({ API_URL, numberOfProducts }) {
                         discountPrice: product.discount_price,
                         discountRate: product.discount_rate,
                     }));
-                console.log(
-                    "Extracted product info:",
-                    JSON.stringify(extractedData, null, 2)
-                ); // JSON 형태로 콘솔에 출력
             })
             .catch((error) => {
                 console.error("Error fetching products:", error);
