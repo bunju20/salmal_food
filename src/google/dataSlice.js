@@ -44,6 +44,10 @@ export const dataSlice = createSlice({
         setUid(state, action) {
             state.uid = action.payload;
         },
+        restoreState: (state, action) => {
+            // 저장된 상태로 전체 스토어 상태 복원
+            return action.payload;
+        },
         setDate(state, action) {
             state.date = action.payload;
         },
@@ -159,6 +163,7 @@ export const dataSlice = createSlice({
 
 export const {
     setUid,
+    restoreState,
     setDate,
     setTime,
     setReferrer,

@@ -12,7 +12,14 @@ import TopTwoService from "./service/TopTwoService.js";
 import CateService from "./service/CateService.js";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setUid, setDate, setReferrer, setDevice } from "./google/dataSlice.js";
+import {
+    setUid,
+    setDate,
+    setReferrer,
+    setDevice,
+    setTime,
+    restoreState,
+} from "./google/dataSlice.js";
 import { v4 as uuidv4 } from "uuid";
 import { sendDataToSpreadsheet } from "./google/sendData.jsx";
 import { useSelector } from "react-redux";
@@ -60,12 +67,54 @@ function App() {
     }, [data]);
 
     useEffect(() => {
-        // 컴포넌트가 마운트될 때의 시간을 기록합니다.
-        const startTime = new Date();
+        // 로컬 스토리지에서 상태 불러오기
+        const savedData = localStorage.getItem("appState");
+        const currentTime = Date.now();
+        const timeLimit = 5 * 60 * 1000; // 1분
 
-        const uniqueID = uuidv4(); // 고유한 ID를 생성합니다.
-        console.log("Generated unique ID:", uniqueID);
-        dispatch(setUid(uniqueID)); // 생성된 고유 ID를 리덕스 스토어에 저장합니다.
+        if (savedData) {
+            const parsedData = JSON.parse(savedData);
+            // 로컬 스토리지에 저장된 시간과 현재 시간을 비교
+            if (parsedData.time && currentTime - parsedData.time < timeLimit) {
+                dispatch(restoreState(parsedData.state)); // 저장된 상태로 스토어 복원
+            } else {
+                // 10분 초과 시 UID 새로 설정
+                dispatch(setUid(uuidv4()));
+            }
+        }
+    }, [dispatch]);
+
+    useEffect(() => {
+        // 상태가 변경될 때마다 로컬 스토리지에 저장
+        const stateToSave = {
+            time: Date.now(),
+            state: data,
+        };
+        localStorage.setItem("appState", JSON.stringify(stateToSave));
+    }, [data]);
+
+    useEffect(() => {
+        // 컴포넌트가 마운트될 때의 시간을 기록합니다.
+        const startTime = Date.now();
+
+        const storedUID = localStorage.getItem("userID");
+        const storedTime = localStorage.getItem("userTime");
+
+        const currentTime = Date.now();
+        const timeLimit = 10 * 60 * 1000; // 10분을 밀리초로 변환
+
+        // 유저 ID가 있고, 저장된 시간으로부터 10분이 지나지 않았다면 기존 UID 유지
+        if (storedUID && storedTime && currentTime - storedTime < timeLimit) {
+            console.log("Using stored UID:", storedUID);
+            dispatch(setUid(storedUID));
+        } else {
+            // 그렇지 않다면 새로운 UID 생성 및 저장
+            const newUID = uuidv4();
+            console.log("Generated new UID:", newUID);
+            dispatch(setUid(newUID));
+            localStorage.setItem("userID", newUID);
+            localStorage.setItem("userTime", currentTime.toString()); // 현재 시간 저장
+        }
 
         const formattedDateTime = getLocalDateTime();
         console.log("Current Local Date and Time:", formattedDateTime);
@@ -81,12 +130,17 @@ function App() {
             // 인스타그램에서 온 경우 처리
         } else if (source === "facebook") {
             console.log("User came from Facebook.");
+            dispatch(setReferrer("facebook"));
+            // 페이스북에서 온 경우 처리
+        } else if (source === "toss") {
+            console.log("User came from Facebook.");
+            dispatch(setReferrer("toss"));
             // 페이스북에서 온 경우 처리
         } else {
             console.log("User came from an unknown source.");
+            dispatch(setReferrer("Unknown"));
             // 알 수 없는 출처에서 온 경우 처리
         }
-        dispatch(setReferrer(uniqueID));
 
         const userAgent = navigator.userAgent;
 
@@ -108,10 +162,19 @@ function App() {
 
         // 클린업 함수에서 페이지를 벗어날 때의 로직을 처리합니다.
         return () => {
-            const endTime = new Date(); // 현재 시간을 기록합니다.
-            const timeSpent = (endTime - startTime) / 1000; // 초 단위로 계산합니다.
-            console.log(`User spent ${timeSpent} seconds on the page.`);
+            const endTime = Date.now(); // 현재 시간을 기록합니다.
+            const timeSpentInSeconds = Math.round((endTime - startTime) / 1000); // 페이지에 머문 시간을 초 단위로 계산
 
+            // 시간, 분, 초 계산
+            const hours = Math.floor(timeSpentInSeconds / 3600);
+            const minutes = Math.floor((timeSpentInSeconds % 3600) / 60);
+            const seconds = timeSpentInSeconds % 60;
+
+            // 시간, 분, 초를 문자열 형식으로 변환 ("몇시간 몇분 몇초")
+            const timeSpentString = `${hours}시간 ${minutes}분 ${seconds}초`;
+
+            console.log(`User spent ${timeSpentString} on the page.`); // 변환된 문자열 로깅
+            dispatch(setTime(timeSpentString));
             // 여기서 timeSpent 값을 백엔드로 보내거나 다른 처리를 할 수 있습니다.
         };
     }, []);
