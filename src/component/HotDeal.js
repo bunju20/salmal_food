@@ -1,6 +1,7 @@
 import React from "react";
 import "../css/HotDeal.css"; // Import the CSS file here
 import { useDispatch, useSelector } from "react-redux";
+import links from "../service/CoupangURL.json";
 import {
     setHotDeal1,
     setHotDeal2,
@@ -27,12 +28,25 @@ function HotDeal({
         console.log(
             `버튼이 클릭되었습니다. 컴포넌트 식별자: ${componentIndex}`
         );
-        if (componentIndex === 1) dispatch(setHotDeal1("TRUE"));
-        else if (componentIndex === 2) dispatch(setHotDeal2("TRUE"));
-        else if (componentIndex === 3) dispatch(setHotDeal3("TRUE"));
-        else if (componentIndex === 4) dispatch(setHotDeal4("TRUE"));
-        else if (componentIndex === 5) dispatch(setHotDeal5("TRUE"));
-        else if (componentIndex === 6) dispatch(setHotDeal6("TRUE"));
+        if (componentIndex === 1) {
+            dispatch(setHotDeal1("TRUE"));
+            window.location.href = links.hotDeal1;
+        } else if (componentIndex === 2) {
+            dispatch(setHotDeal2("TRUE"));
+            window.location.href = links.hotDeal2;
+        } else if (componentIndex === 3) {
+            dispatch(setHotDeal3("TRUE"));
+            window.location.href = links.hotDeal3;
+        } else if (componentIndex === 4) {
+            dispatch(setHotDeal4("TRUE"));
+            window.location.href = links.hotDeal4;
+        } else if (componentIndex === 5) {
+            dispatch(setHotDeal5("TRUE"));
+            window.location.href = links.hotDeal5;
+        } else if (componentIndex === 6) {
+            dispatch(setHotDeal6("TRUE"));
+            window.location.href = links.hotDeal6;
+        }
     };
     return (
         <button onClick={handleClick} className="Div-h">
