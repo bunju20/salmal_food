@@ -31,9 +31,9 @@ function HotDealCarousel() {
         fetch(DEALS_URL)
             .then((response) => response.json())
             .then((data) => {
-                // data.products가 배열인지 확인하고, 맞다면 해당 데이터를 사용
+                // data.products가 배열인지 확인하고, 맞다면 해당 데이터의 처음 6개 항목만 사용
                 if (Array.isArray(data.products)) {
-                    setDeals(data.products);
+                    setDeals(data.products.slice(0, 6));
                 } else {
                     console.error("Fetched data is not an array:", data);
                     setDeals([]); // data.products가 배열이 아닌 경우 빈 배열 설정

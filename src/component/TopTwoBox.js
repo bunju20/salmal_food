@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setRecent1, setRecent2 } from "../google/dataSlice";
 import { sendDataToSpreadsheet } from "../google/sendData.jsx";
+import links from "../service/CoupangURL.json";
 
 function TopTwoBox({
     index, // 추가된 prop: 컴포넌트의 인덱스 또는 고유 식별자
@@ -19,8 +20,13 @@ function TopTwoBox({
     const handleClick = () => {
         console.log(`버튼이 클릭되었습니다. 컴포넌트 식별자: ${index}`);
 
-        if (index === 0) dispatch(setRecent1("TRUE"));
-        else dispatch(setRecent2("TRUE"));
+        if (index === 0) {
+            dispatch(setRecent1("TRUE"));
+            window.location.href = links.TopTwo1;
+        } else {
+            dispatch(setRecent2("TRUE"));
+            window.location.href = links.TopTwo2;
+        }
 
         sendDataToSpreadsheet(data);
 

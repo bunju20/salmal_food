@@ -233,5 +233,4 @@ body {
   display: flex;
   flex-direction: row; /* 항목들을 가로로 정렬 */
   justify-content: center; /* 중앙 정렬 */
-  gap: 20px; /* 항목 사이의 간격 */
 }
