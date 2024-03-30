@@ -57,9 +57,10 @@ function TopTwoBox({
                 srcSet={imageUrl}
                 className="self-center ml-4 aspect-[1.41] max-w-[119px] w-[119px]"
             />
+
             <button
                 onClick={handleClick}
-                className="justify-center text-xs text-center text-pink-400 rounded-md bg-pink-400 bg-opacity-20 btn-height"
+                className="ml-2.5 mt-2.5  justify-center text-xs text-center text-pink-400 rounded-md bg-pink-400 bg-opacity-20 btn-height"
             >
                 지금 사고 {savings}원 아끼기
             </button>
