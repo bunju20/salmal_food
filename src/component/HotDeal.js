@@ -1,5 +1,15 @@
 import React from "react";
 import "../css/HotDeal.css"; // Import the CSS file here
+import { useDispatch, useSelector } from "react-redux";
+import {
+    setHotDeal1,
+    setHotDeal2,
+    setHotDeal3,
+    setHotDeal4,
+    setHotDeal5,
+    setHotDeal6,
+} from "../google/dataSlice";
+import { sendDataToSpreadsheet } from "../google/sendData.jsx";
 
 function HotDeal({
     dealTitle,
@@ -9,11 +19,20 @@ function HotDeal({
     imageUrl,
     componentIndex,
 }) {
+    const dispatch = useDispatch();
+    const data = useSelector((state) => state.data);
+
     const handleClick = () => {
         //console.log("버튼이 클릭되었습니다.");
         console.log(
             `버튼이 클릭되었습니다. 컴포넌트 식별자: ${componentIndex}`
         );
+        if (componentIndex === 1) dispatch(setHotDeal1("TRUE"));
+        else if (componentIndex === 2) dispatch(setHotDeal2("TRUE"));
+        else if (componentIndex === 3) dispatch(setHotDeal3("TRUE"));
+        else if (componentIndex === 4) dispatch(setHotDeal4("TRUE"));
+        else if (componentIndex === 5) dispatch(setHotDeal5("TRUE"));
+        else if (componentIndex === 6) dispatch(setHotDeal6("TRUE"));
     };
     return (
         <button onClick={handleClick} className="Div-h">
