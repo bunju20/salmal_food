@@ -17,6 +17,7 @@ import { v4 as uuidv4 } from "uuid";
 import { sendDataToSpreadsheet } from "./google/sendData.jsx";
 import { useSelector } from "react-redux";
 import CountdownTimer from "./component/CountdownTimer.js";
+import DateText from "./component/DateText.js";
 
 function App() {
     const [currentSection, setCurrentSection] = useState("");
@@ -141,6 +142,7 @@ function App() {
                     <div className="box-container">
                         <TopTwoService />
                     </div>
+                    <DateText />
                 </section>
             </div>
             <CateService />

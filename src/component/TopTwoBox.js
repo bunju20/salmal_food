@@ -34,7 +34,7 @@ function TopTwoBox({
     };
 
     return (
-        <div className="flex flex-col items-start my-3.5 ml-3 p-10px bg-white rounded-xl border border-solid border-zinc-300 leading-[150%] max-w-[172px]">
+        <div className="flex flex-col items-start my-1 ml-3 p-10px bg-white rounded-xl border border-solid border-zinc-300 leading-[150%] max-w-[172px]">
             <div className="text-sm leading-4 text-neutral-700">
                 {productName}
             </div>

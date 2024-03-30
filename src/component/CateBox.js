@@ -142,7 +142,12 @@ function CateBox({
     return (
         <button onClick={handleClick} className="Div">
             <div className="Div2">
-                <img className="Img" loading="lazy" srcSet={imageUrl} alt="" />
+                <img
+                    className="Img rounded-lg"
+                    loading="lazy"
+                    srcSet={imageUrl}
+                    alt=""
+                />
                 <div className="Div3">로켓프레시</div>
             </div>
             <div className="Div4">
