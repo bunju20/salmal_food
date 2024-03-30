@@ -1,4 +1,7 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setRecent1, setRecent2 } from "../google/dataSlice";
+import { sendDataToSpreadsheet } from "../google/sendData.jsx";
 
 function TopTwoBox({
     index, // 추가된 prop: 컴포넌트의 인덱스 또는 고유 식별자
@@ -10,8 +13,17 @@ function TopTwoBox({
     savings,
 }) {
     // 클릭 이벤트 핸들러가 컴포넌트의 식별 정보를 로깅하도록 수정
+    const dispatch = useDispatch();
+    const data = useSelector((state) => state.data);
+
     const handleClick = () => {
         console.log(`버튼이 클릭되었습니다. 컴포넌트 식별자: ${index}`);
+
+        if (index === 0) dispatch(setRecent1("TRUE"));
+        else dispatch(setRecent2("TRUE"));
+
+        sendDataToSpreadsheet(data);
+
         // 여기에 원하는 동작 추가
     };
 

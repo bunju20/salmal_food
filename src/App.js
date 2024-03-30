@@ -12,8 +12,10 @@ import TopTwoService from "./service/TopTwoService.js";
 import CateService from "./service/CateService.js";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setUid } from "./google/dataSlice.js";
+import { setUid, setDate, setReferrer, setDevice } from "./google/dataSlice.js";
 import { v4 as uuidv4 } from "uuid";
+import { sendDataToSpreadsheet } from "./google/sendData.jsx";
+import { useSelector } from "react-redux";
 
 function App() {
     const [currentSection, setCurrentSection] = useState("");
@@ -22,6 +24,7 @@ function App() {
     const categoryRef = useRef(null); // 카테고리 섹션을 위한 ref // dispatch 함수를 사용하기 위한 훅
 
     const API_URL = process.env.REACT_APP_HOSITAMTAM;
+    const data = useSelector((state) => state.data);
 
     function getLocalDateTime() {
         const now = new Date();
@@ -50,6 +53,11 @@ function App() {
     };
 
     useEffect(() => {
+        console.log(JSON.stringify(data)); // 상태가 업데이트된 후에 실행될 로직
+        sendDataToSpreadsheet(data);
+    }, [data]);
+
+    useEffect(() => {
         // 컴포넌트가 마운트될 때의 시간을 기록합니다.
         const startTime = new Date();
 
@@ -59,11 +67,11 @@ function App() {
 
         const formattedDateTime = getLocalDateTime();
         console.log("Current Local Date and Time:", formattedDateTime);
+        dispatch(setDate(formattedDateTime));
 
         const queryParams = new URLSearchParams(window.location.search);
         // utm_source 파라미터를 통해 방문 출처를 식별합니다.
         const source = queryParams.get("utm_source");
-
         // 출처에 따라 적절한 로그를 출력하거나 다른 작업을 수행합니다.
         if (source === "instagram" || source === "insta") {
             console.log("User came from Instagram.");
@@ -75,6 +83,7 @@ function App() {
             console.log("User came from an unknown source.");
             // 알 수 없는 출처에서 온 경우 처리
         }
+        dispatch(setReferrer(uniqueID));
 
         const userAgent = navigator.userAgent;
 
@@ -89,6 +98,10 @@ function App() {
         } else {
             console.log("User is on a desktop device.");
         }
+        dispatch(setDevice(isMobile ? "Mobile" : "Desktop"));
+
+        console.log("Data to be sent:", data);
+        sendDataToSpreadsheet(data);
 
         // 클린업 함수에서 페이지를 벗어날 때의 로직을 처리합니다.
         return () => {
