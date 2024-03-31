@@ -28,11 +28,17 @@ function TopTwoService() {
                     key={index}
                     index={index}
                     productName={product.name}
-                    originalPrice={product.highest_regular_price.toString()}
-                    discountRate={product.discount_rate.toString()} // 수정됨
-                    discountedPrice={product.price.toString()}
+                    originalPrice={new Intl.NumberFormat().format(
+                        product.highest_regular_price
+                    )}
+                    discountRate={Math.floor(product.discount_rate).toString()} // 수정됨
+                    discountedPrice={new Intl.NumberFormat().format(
+                        product.price
+                    )}
                     imageUrl={product.thumbnail} // 수정됨
-                    savings={product.discount_price.toString()}
+                    savings={new Intl.NumberFormat().format(
+                        product.discount_price
+                    )}
                 />
             ))}
         </div>
