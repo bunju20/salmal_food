@@ -38,7 +38,7 @@ body {
 }
 
 /* 화면 너비가 600px 이상일 때 */
-@media (min-width: 600px) {
+@media (min-width: 390px) {
   .responsive-square {
     width: 390px; /* 너비는 유지 */
     min-height: 667px; /* 최소 높이 설정, 내용이 이보다 많으면 컨테이너 높이가 늘어남 */
@@ -46,7 +46,7 @@ body {
 }
 
 /* 화면 너비가 600px 미만일 때 */
-@media (max-width: 599px) {
+@media (max-width: 390px) {
   .responsive-square {
     width: 100%; /* 전체 너비 */
     min-height: 100vh; /* 최소 높이를 화면 높이로 설정 */
@@ -108,21 +108,21 @@ body {
 .timing-text {
   font-size: 26px;
   color: #1C1C1C; /* 예시로 파란색 지정 */
-  font-family: AppleSDGothicNeoB;
+  font-family: AppleSDGothicNeoEB;
 }
 
 .best-price-text {
   font-size: 26px;
   color: #FF77CA; /* 예시로 빨간색 지정 */
-  font-family: AppleSDGothicNeoB;
+  font-family: AppleSDGothicNeoEB;
 }
 
 .timer-box {
   width: 130px;
   height: 28px;
   padding: 1px 14px 2px 14px;
-  margin: 10px;
-  border: 1px solid rgba(255, 64, 180, 1);
+  margin: 12px;
+  border: 1px solid #FF77CA;
   border-radius: 100px;
   box-sizing: border-box;
 }
@@ -131,7 +131,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: rgba(255, 64, 180, 1);
+  color: #FF77CA;
   font-size: 18px;
   line-height: 130%;
   font-family: AppleSDGothicNeoB00, sans-serif;
@@ -234,4 +234,6 @@ body {
   display: flex;
   flex-direction: row; /* 항목들을 가로로 정렬 */
   justify-content: center; /* 중앙 정렬 */
+  margin: 3px;
+  gap: 10px;
 }
