@@ -198,7 +198,11 @@ function App() {
                 <HotDealCarousel />
             </section>
 
-            <img src={BottomBanner} alt="banner" />
+            <img
+                src={BottomBanner}
+                alt="banner"
+                style={{ marginTop: "80px" }}
+            />
         </div>
     );
 }

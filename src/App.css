@@ -173,7 +173,7 @@ body {
 .product-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
+  grid-gap: 8px;
 }
 
 
@@ -192,7 +192,7 @@ body {
 .input-box {
   width: 120px;
   height: 30px;
-  border: 2px solid #FF77CA;
+  border: 1px solid #FF77CA;
   border-radius: 80px;
   background-color: #FFFFFF;
   color: #FF77CA;
@@ -236,4 +236,13 @@ body {
   justify-content: center; /* 중앙 정렬 */
   margin: 3px;
   gap: 10px;
+}
+
+.top-two-products-container > div {
+  flex: 1; /* 두 박스가 동일한 비율로 공간을 차지하게 함 */
+  min-width: 0; /* 내용이 줄어들 때 박스가 너무 작아지는 것을 방지 */
+}
+
+.carousel-item-padding-40-px {
+  margin-right: 35px; /* 오른쪽 간격 추가 *//* 왼쪽 간격 추가 */
 }

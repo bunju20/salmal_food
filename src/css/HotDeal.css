@@ -1,12 +1,8 @@
 .Div-h {
     display: flex;
-    max-width: 153px;
+    width: 152px;
     flex-direction: column;
     margin-left: 10px;
-
-    /*
-    왼쪽 정렬
-    */
     text-align: left;
     align-items: flex-start;
   }

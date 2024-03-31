@@ -61,10 +61,16 @@ function HotDealCarousel() {
             {deals.map((deal, index) => (
                 <HotDeal
                     key={index}
-                    dealTitle={deal.name}
-                    originalPrice={deal.highest_regular_price}
-                    discountRate={deal.discount_rate}
-                    discountedPrice={deal.price}
+                    dealTitle={
+                        deal.name.length > 8
+                            ? `${deal.name.substring(0, 8)}...`
+                            : deal.name
+                    }
+                    originalPrice={new Intl.NumberFormat().format(
+                        deal.highest_regular_price
+                    )}
+                    discountRate={Math.floor(deal.discount_rate)}
+                    discountedPrice={new Intl.NumberFormat().format(deal.price)}
                     imageUrl={deal.thumbnail}
                     componentIndex={index + 1}
                 />

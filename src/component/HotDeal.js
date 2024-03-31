@@ -60,11 +60,17 @@ function HotDeal({
             </div>
             <div className="Div7-h">
                 <div className="Div8-h">
-                    <div className="Div9-h">{discountedPrice}</div>
-                    <div className="Div10-h" />
+                    <div className="Div9-h">{`${discountedPrice}원`}</div>
                 </div>
                 {/* 이미지 경로가 고정되어 있으므로, 필요에 따라 props에서 받아오는 방식으로 변경할 수 있습니다. */}
-                <img src={require("../asset/rocket.svg").default} />
+                <div>
+                    <img
+                        src={require("../asset/rocket.svg").default}
+                        width="58px"
+                        height="28px"
+                        style={{ marginTop: "3px" }}
+                    />
+                </div>
             </div>
         </button>
     );

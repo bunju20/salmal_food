@@ -43,6 +43,9 @@ function CateService() {
 
     return (
         <section className="gray-section">
+            <span class="cate-text">카테고리 특가</span>
+            {""}
+            <span class="cate-text-black">로 현명한 소비</span>
             <div className="tags-container">
                 {Object.keys(API_URLS).map((tag) => (
                     <Tag
@@ -58,10 +61,20 @@ function CateService() {
                 {productsData[selectedTag].map((product, index) => (
                     <CateBox
                         key={index}
-                        productName={product.name}
-                        originalPrice={product.highest_regular_price.toString()}
-                        discountRate={product.discount_rate.toString()}
-                        price={product.price.toString()}
+                        productName={
+                            product.name.length > 8
+                                ? `${product.name.substring(0, 8)}...`
+                                : product.name
+                        }
+                        originalPrice={new Intl.NumberFormat().format(
+                            product.highest_regular_price.toString()
+                        )}
+                        discountRate={Math.floor(
+                            product.discount_rate
+                        ).toString()}
+                        price={new Intl.NumberFormat().format(
+                            product.price.toString()
+                        )}
                         imageUrl={product.thumbnail}
                         categoryName={selectedTag}
                         componentIndex={index + 1}
