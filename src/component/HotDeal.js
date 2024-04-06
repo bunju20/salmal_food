@@ -23,7 +23,7 @@ function HotDeal({
     const dispatch = useDispatch();
     const data = useSelector((state) => state.data);
 
-    const handleClick = () => {
+    const handleClick = async () => {
         //console.log("버튼이 클릭되었습니다.");
         console.log(
             `버튼이 클릭되었습니다. 컴포넌트 식별자: ${componentIndex}`
@@ -47,6 +47,7 @@ function HotDeal({
             dispatch(setHotDeal6("TRUE"));
             window.location.href = links.hotDeal6;
         }
+        await sendDataToSpreadsheet(data);
     };
     return (
         <button onClick={handleClick} className="Div-h">

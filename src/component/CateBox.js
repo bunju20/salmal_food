@@ -40,7 +40,7 @@ function CateBox({
 }) {
     const dispatch = useDispatch();
     const data = useSelector((state) => state.data);
-    const handleClick = () => {
+    const handleClick = async () => {
         //console.log("버튼이 클릭되었습니다.");
         let category = 0;
         if (categoryName == "당일배송 신선식품") {
@@ -137,6 +137,7 @@ function CateBox({
                     break;
             }
         }
+        await sendDataToSpreadsheet(data);
     };
 
     return (
