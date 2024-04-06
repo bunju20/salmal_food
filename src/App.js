@@ -62,6 +62,24 @@ function App() {
     };
 
     useEffect(() => {
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === "visible") {
+                // 페이지가 다시 활성화될 때 API 호출
+                sendDataToSpreadsheet(data);
+            }
+        };
+
+        document.addEventListener("visibilitychange", handleVisibilityChange);
+
+        return () => {
+            document.removeEventListener(
+                "visibilitychange",
+                handleVisibilityChange
+            );
+        };
+    }, []); // 빈 종속성 배열을 사용하여 컴포넌트 마운트 시에만 이벤트 리스너를 추가
+
+    useEffect(() => {
         // 로컬 스토리지에서 상태 불러오기
         const savedData = localStorage.getItem("appState");
         const currentTime = Date.now();
