@@ -19,15 +19,24 @@ function TopTwoBox({
 
     const handleClick = async () => {
         if (index == 0) {
-            dispatch(setRecent1("TRUE"));
+            await dispatch(setRecentAsync("TRUE", "recent1"));
             await sendDataToSpreadsheet(data);
             window.location.href = links.TopTwo1;
         } else {
-            dispatch(setRecent2("TRUE"));
+            await dispatch(setRecentAsync("TRUE", "recent2"));
             await sendDataToSpreadsheet(data);
             window.location.href = links.TopTwo2;
         }
         // 여기에 원하는 동작 추가
+    };
+
+    // 비동기 액션 크리에이터
+    const setRecentAsync = (value, recentType) => async (dispatch) => {
+        if (recentType === "recent1") {
+            dispatch(setRecent1(value));
+        } else if (recentType === "recent2") {
+            dispatch(setRecent2(value));
+        }
     };
 
     return (

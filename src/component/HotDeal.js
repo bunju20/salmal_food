@@ -30,24 +30,29 @@ function HotDeal({
         );
         if (componentIndex === 1) {
             dispatch(setHotDeal1("TRUE"));
+            await sendDataToSpreadsheet(data);
             window.location.href = links.hotDeal1;
         } else if (componentIndex === 2) {
             dispatch(setHotDeal2("TRUE"));
+            await sendDataToSpreadsheet(data);
             window.location.href = links.hotDeal2;
         } else if (componentIndex === 3) {
             dispatch(setHotDeal3("TRUE"));
+            await sendDataToSpreadsheet(data);
             window.location.href = links.hotDeal3;
         } else if (componentIndex === 4) {
             dispatch(setHotDeal4("TRUE"));
+            await sendDataToSpreadsheet(data);
             window.location.href = links.hotDeal4;
         } else if (componentIndex === 5) {
             dispatch(setHotDeal5("TRUE"));
+            await sendDataToSpreadsheet(data);
             window.location.href = links.hotDeal5;
         } else if (componentIndex === 6) {
             dispatch(setHotDeal6("TRUE"));
+            await sendDataToSpreadsheet(data);
             window.location.href = links.hotDeal6;
         }
-        await sendDataToSpreadsheet(data);
     };
     return (
         <button onClick={handleClick} className="Div-h">

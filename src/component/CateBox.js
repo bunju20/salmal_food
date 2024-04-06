@@ -56,27 +56,33 @@ function CateBox({
             switch (componentIndex) {
                 case 1:
                     dispatch(setFeature1_1("TRUE"));
+                    await sendDataToSpreadsheet(data);
                     window.location.href = links.feature1_1;
                     break;
                 case 2:
                     dispatch(setFeature1_2("TRUE"));
+                    await sendDataToSpreadsheet(data);
                     window.location.href = links.feature1_2;
                     break;
                 case 3:
                     dispatch(setFeature1_3("TRUE"));
+                    await sendDataToSpreadsheet(data);
                     window.location.href = links.feature1_3;
                     break;
                 case 4:
                     dispatch(setFeature1_4("TRUE"));
+                    await sendDataToSpreadsheet(data);
                     window.location.href = links.feature1_4;
                     break;
                 case 5:
                     dispatch(setFeature1_5("TRUE"));
+                    await sendDataToSpreadsheet(data);
                     window.location.href = links.feature1_5;
 
                     break;
                 case 6:
                     dispatch(setFeature1_6("TRUE"));
+                    await sendDataToSpreadsheet(data);
                     window.location.href = links.feature1_6;
                     break;
             }
@@ -85,26 +91,32 @@ function CateBox({
             switch (componentIndex) {
                 case 1:
                     dispatch(setFeature2_1("TRUE"));
+                    await sendDataToSpreadsheet(data);
                     window.location.href = links.feature2_1;
                     break;
                 case 2:
                     dispatch(setFeature2_2("TRUE"));
+                    await sendDataToSpreadsheet(data);
                     window.location.href = links.feature2_2;
                     break;
                 case 3:
                     dispatch(setFeature2_3("TRUE"));
+                    await sendDataToSpreadsheet(data);
                     window.location.href = links.feature2_3;
                     break;
                 case 4:
                     dispatch(setFeature2_4("TRUE"));
+                    await sendDataToSpreadsheet(data);
                     window.location.href = links.feature2_4;
                     break;
                 case 5:
                     dispatch(setFeature2_5("TRUE"));
+                    await sendDataToSpreadsheet(data);
                     window.location.href = links.feature2_5;
                     break;
                 case 6:
                     dispatch(setFeature2_6("TRUE"));
+                    await sendDataToSpreadsheet(data);
                     window.location.href = links.feature2_6;
                     break;
             }
@@ -113,26 +125,32 @@ function CateBox({
             switch (componentIndex) {
                 case 1:
                     dispatch(setFeature3_1("TRUE"));
+                    await sendDataToSpreadsheet(data);
                     window.location.href = links.feature3_1;
                     break;
                 case 2:
                     dispatch(setFeature3_2("TRUE"));
+                    await sendDataToSpreadsheet(data);
                     window.location.href = links.feature3_2;
                     break;
                 case 3:
                     dispatch(setFeature3_3("TRUE"));
+                    await sendDataToSpreadsheet(data);
                     window.location.href = links.feature3_3;
                     break;
                 case 4:
                     dispatch(setFeature3_4("TRUE"));
+                    await sendDataToSpreadsheet(data);
                     window.location.href = links.feature3_4;
                     break;
                 case 5:
                     dispatch(setFeature3_5("TRUE"));
+                    await sendDataToSpreadsheet(data);
                     window.location.href = links.feature3_5;
                     break;
                 case 6:
                     dispatch(setFeature3_6("TRUE"));
+                    await sendDataToSpreadsheet(data);
                     window.location.href = links.feature3_6;
                     break;
             }
