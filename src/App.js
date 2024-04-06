@@ -92,11 +92,12 @@ function App() {
         // 컴포넌트가 마운트될 때의 시간을 기록합니다.
         const startTime = Date.now();
 
-        const storedUID = localStorage.getItem("userID");
-        const storedTime = localStorage.getItem("userTime");
-
         const currentTime = Date.now();
-        const timeLimit = 10 * 60 * 1000; // 10분을 밀리초로 변환
+        const storedUID = localStorage.getItem("userID");
+        // localStorage에서 가져온 시간을 정수로 변환합니다.
+        const storedTime = parseInt(localStorage.getItem("userTime"), 10); // 문자열을 정수로 변환
+
+        const timeLimit = 5 * 60 * 1000; // 10분을 밀리초로 변환
 
         // 유저 ID가 있고, 저장된 시간으로부터 10분이 지나지 않았다면 기존 UID 유지
         if (storedUID && storedTime && currentTime - storedTime < timeLimit) {
@@ -104,12 +105,12 @@ function App() {
         } else {
             // 그렇지 않다면 새로운 UID 생성 및 저장
             const newUID = uuidv4();
-
             dispatch(setUid(newUID));
             localStorage.setItem("userID", newUID);
-            localStorage.setItem("userTime", currentTime.toString()); // 현재 시간 저장
+            localStorage.setItem("userTime", currentTime.toString()); // 현재 시간을 문자열로 저장
         }
 
+        console.log(`UID: ${data.uid}`); // UID 출력
         const formattedDateTime = getLocalDateTime();
 
         dispatch(setDate(formattedDateTime));

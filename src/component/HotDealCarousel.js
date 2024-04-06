@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import HotDeal from "./HotDeal.js";
+import "../App.css";
 
 const responsive = {
     superLargeDesktop: {

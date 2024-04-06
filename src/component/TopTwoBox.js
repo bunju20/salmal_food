@@ -17,17 +17,16 @@ function TopTwoBox({
     const dispatch = useDispatch();
     const data = useSelector((state) => state.data);
 
-    const handleClick = () => {
-        if (index === 0) {
+    const handleClick = async () => {
+        if (index == 0) {
             dispatch(setRecent1("TRUE"));
+            await sendDataToSpreadsheet(data);
             window.location.href = links.TopTwo1;
         } else {
             dispatch(setRecent2("TRUE"));
+            await sendDataToSpreadsheet(data);
             window.location.href = links.TopTwo2;
         }
-
-        sendDataToSpreadsheet(data);
-
         // 여기에 원하는 동작 추가
     };
 
