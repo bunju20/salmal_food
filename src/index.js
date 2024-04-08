@@ -7,6 +7,13 @@ import { store } from "./app/store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
+import ReactGA from "react-ga4";
+
+// 구글 애널리틱스 운영서버만 적용
+if (process.env.REACT_APP_GOOGLE_ANALYTICS) {
+    ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS);
+}
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <BrowserRouter>
