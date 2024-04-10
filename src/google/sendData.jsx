@@ -16,6 +16,7 @@ export const sendDataToSpreadsheet = async (data) => {
             body: JSON.stringify(data),
         });
 
+        console.log(JSON.stringify(data));
         const jsonResponse = await response.json(); // 응답 본문을 JSON으로 파싱
         console.log("Success:", jsonResponse); // 성공 응답 로그 출력
     } catch (error) {
