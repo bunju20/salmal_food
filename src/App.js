@@ -66,7 +66,7 @@ function App() {
         const handleVisibilityChange = () => {
             if (document.visibilityState === "visible") {
                 // 페이지가 다시 활성화될 때 API 호출
-                sendDataToSpreadsheet(data);
+                // sendDataToSpreadsheet(data);
                 const startTime = Date.now();
 
                 const currentTime = Date.now();
@@ -136,12 +136,6 @@ function App() {
         };
         localStorage.setItem("appState", JSON.stringify(stateToSave));
     }, [data]);
-
-    useEffect(() => {
-        if (data.uid) {
-            sendDataToSpreadsheet(data);
-        }
-    }, [data.uid]);
 
     useEffect(() => {
         sendDataToSpreadsheet(data);
