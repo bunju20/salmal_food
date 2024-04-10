@@ -144,6 +144,10 @@ function App() {
     }, [data.uid]);
 
     useEffect(() => {
+        sendDataToSpreadsheet(data);
+    }, [data]);
+
+    useEffect(() => {
         // 컴포넌트가 마운트될 때의 시간을 기록합니다.
         const startTime = Date.now();
 
