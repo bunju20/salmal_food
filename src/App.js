@@ -62,6 +62,7 @@ function App() {
     };
 
     useEffect(() => {
+        console.log("화면 다시 돌아옴");
         const handleVisibilityChange = () => {
             if (document.visibilityState === "visible") {
                 // 페이지가 다시 활성화될 때 API 호출
@@ -84,14 +85,15 @@ function App() {
                     currentTime - storedTime < timeLimit
                 ) {
                     dispatch(setUid(storedUID));
-                    console.log(`UID: ${storedUID}`);
+                    console.log(`store UID: ${storedUID}`);
+                    console.log(data);
                 } else {
                     // 그렇지 않다면 새로운 UID 생성 및 저장
                     const newUID = uuidv4();
                     dispatch(setUid(newUID));
                     localStorage.setItem("userID", newUID);
                     localStorage.setItem("userTime", currentTime.toString()); // 현재 시간을 문자열로 저장
-                    console.log(`UID: ${newUID}`);
+                    console.log(`new UID: ${newUID}`);
                 }
 
                 console.log(`UID: ${data.uid}`); // UID 출력
@@ -136,6 +138,12 @@ function App() {
     }, [data]);
 
     useEffect(() => {
+        if (data.uid) {
+            sendDataToSpreadsheet(data);
+        }
+    }, [data.uid]);
+
+    useEffect(() => {
         // 컴포넌트가 마운트될 때의 시간을 기록합니다.
         const startTime = Date.now();
 
@@ -147,18 +155,19 @@ function App() {
 
         // 유저 ID가 있고, 저장된 시간으로부터 10분이 지나지 않았다면 기존 UID 유지
         if (storedUID && storedTime && currentTime - storedTime < timeLimit) {
-            dispatch(setUid(storedUID));
-            console.log(`UID: ${storedUID}`);
+            dispatch(setUid(`${storedUID}`));
+            console.log(`store UID: ${storedUID}`);
         } else {
             // 그렇지 않다면 새로운 UID 생성 및 저장
             const newUID = uuidv4();
-            dispatch(setUid(newUID));
+            dispatch(setUid(`${newUID}`));
             localStorage.setItem("userID", newUID);
             localStorage.setItem("userTime", currentTime.toString()); // 현재 시간을 문자열로 저장
-            console.log(`UID: ${newUID}`);
+            console.log(`new UID: ${newUID}`);
         }
 
-        console.log(`UID: ${data.uid}`); // UID 출력
+        console.log(`다시 UID: ${data.uid}`); // UID 출력
+
         const formattedDateTime = getLocalDateTime();
 
         dispatch(setDate(formattedDateTime));
@@ -190,7 +199,7 @@ function App() {
             );
 
         dispatch(setDevice(isMobile ? "Mobile" : "Desktop"));
-        sendDataToSpreadsheet(data);
+        // sendDataToSpreadsheet(data);
 
         // return () => {
         //     const endTime = Date.now(); // 현재 시간을 기록합니다.
